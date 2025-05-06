@@ -1,1 +1,162 @@
-// here cycy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SPM - Pubert</title>
+    <style>
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+        #grad1 {
+            min-height: 100%;
+            background-color: black;
+            background-image: linear-gradient(to bottom right, black, rgb(64, 64, 64));
+            padding: 40px;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            filter: blur(10px);
+            transition: filter 0.5s ease;
+        }
+
+        h1 {
+            font-size: 3em;
+            background: linear-gradient(to right, rgb(188, 188, 0), rgb(255, 0, 255));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            margin: 0 0 20px 0;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.5),
+                         0 0 20px rgba(255, 0, 255, 0.4),
+                         0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        p.description {
+            font-size: 1.5em;
+            font-weight: bold;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            line-height: 1.8;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5),
+                         0 0 20px rgba(255, 105, 180, 0.4),
+                         0 0 30px rgba(255, 105, 180, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .discord-button {
+            background: linear-gradient(to right, #7289da, #99aab5);
+            color: white;
+            font-size: 1em;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(114, 137, 218, 0.6),
+                        0 0 20px rgba(114, 137, 218, 0.4),
+                        0 0 30px rgba(114, 137, 218, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .discord-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(114, 137, 218, 0.8),
+                        0 0 40px rgba(114, 137, 218, 0.6),
+                        0 0 60px rgba(114, 137, 218, 0.5);
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            z-index: 1000;
+            text-shadow: 0 0 5px rgb(255, 255, 255), 0 0 10px rgb(255, 255, 255), 0 0 20px black;
+            cursor: pointer;
+        }
+
+        #volume-slider {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1001;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #volume-control {
+            writing-mode: bt-lr;
+            -webkit-appearance: slider-vertical;
+            width: 8px;
+            height: 150px;
+            background: #333;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay">Click anywhere to open...</div>
+
+    <audio id="bg-audio" src="ratherlie.mp3" loop></audio>
+
+    <div id="volume-slider">
+        <input type="range" min="0" max="1" step="0.01" value="0.5" id="volume-control">
+    </div>
+
+    <div id="grad1">
+        <h1>Welcome to SPM - Pubert</h1>
+        <p class="description">
+            Hello! I'm Pubert, previously known as Cycy or Cycystudios!<br>
+            I'm 14.<br>
+            My good friends are Aduios, Seamus, Nox, Jrvr, M4, Bitzelcrafpt, Moose, Apoca, Land, Valory, Noxide, and S4ge.<br>
+            I code C# for the most part, but have been learning C++ overtime, which is actually what I use for the production of SPM Mods.<br>
+            I also am familiar with JavaScript, and do Python needed for backends. 
+        </p>
+
+        <div class="button-container">
+            <a href="https://discord.gg/spm" class="discord-button" target="_blank">Join SPM</a>
+            <a href="https://discord.gg/Zvs8uefn7b" class="discord-button" target="_blank">Join Puberts Stuff</a>
+        </div>
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const grad1 = document.getElementById('grad1');
+        const audio = document.getElementById('bg-audio');
+        const volumeControl = document.getElementById('volume-control');
+
+        audio.volume = volumeControl.value;
+
+        overlay.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            grad1.style.filter = 'none';
+            audio.play().catch(err => console.log('Autoplay blocked:', err));
+        });
+
+        volumeControl.addEventListener('input', () => {
+            audio.volume = volumeControl.value;
+        });
+    </script>
+</body>
+</html>
